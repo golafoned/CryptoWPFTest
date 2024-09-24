@@ -14,7 +14,7 @@ namespace CryptoTest.ViewModels
         public ObservableCollection<Asset> FilteredCryptocurrencies { get; private set; }
 
         private bool _isLoading;
-        public string LableData { get; set; } = "Binded lable";
+        public string LableData { get; set; } = "Binded text crypto💕";
         public ObservableCollection<Asset> CryptoAssets
         {
             get => _assets;
