@@ -1,0 +1,31 @@
+﻿<Page x:Class="CryptoTest.Views.Pages.AssetDetailsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:oxy="http://oxyplot.org/wpf"
+      Title="{Binding SelectedAsset.Name}">
+
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        
+        <StackPanel Margin="20" >
+            <TextBlock FontSize="24" FontWeight="Bold" Text="{Binding SelectedAsset.Name}"/>
+            <TextBlock FontSize="18" Text="Symbol:"/>
+            <TextBlock FontSize="16" Text="{Binding SelectedAsset.Symbol}"/>
+            <TextBlock FontSize="18" Text="Price (USD):"/>
+            <TextBlock FontSize="16" Text="{Binding SelectedAsset.PriceUsd, StringFormat=C}"/>
+            <TextBlock FontSize="18" Text="Change (24h):"/>
+            <TextBlock FontSize="16" Text="{Binding SelectedAsset.VolumeUsd24Hr, StringFormat=C}"/>
+        </StackPanel>
+        <oxy:PlotView Model="{Binding plot}" Grid.Row="0" Grid.RowSpan="2" Grid.Column="1"/>
+
+    </Grid>
+</Page>

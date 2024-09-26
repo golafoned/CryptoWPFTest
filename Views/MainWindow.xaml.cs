@@ -1,6 +1,6 @@
 ﻿using System.Security.Cryptography.X509Certificates;
 using System.Windows;
-namespace CryptoTest.Views
+namespace CryptoTest.Views.Pages
 {
     public partial class MainWindow : Window
     {
@@ -8,7 +8,7 @@ namespace CryptoTest.Views
         {
             InitializeComponent();
             
-            MainFrame.Navigate(new Views.MainPage());
+            MainFrame.Navigate(new MainPage());
         }
     }
 }
