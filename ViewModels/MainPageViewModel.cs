@@ -14,7 +14,6 @@ namespace CryptoTest.ViewModels
         public ObservableCollection<Asset> FilteredCryptocurrencies { get; private set; }
 
         private bool _isLoading;
-        public string LableData { get; set; } = "Binded text crypto💕";
         public ObservableCollection<Asset> CryptoAssets
         {
             get => _assets;
@@ -49,7 +48,7 @@ namespace CryptoTest.ViewModels
             IsLoading = true; // Set loading state
             try
             {
-                var assetData = await _cryptoService.GetTopCryptocurrenciesAsync(8);
+                var assetData = await _cryptoService.GetTopCryptocurrenciesAsync(15);
                 CryptoAssets.Clear();
                 foreach (var asset in assetData)
                 {

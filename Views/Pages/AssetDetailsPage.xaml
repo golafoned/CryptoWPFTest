@@ -4,7 +4,7 @@
       xmlns:oxy="http://oxyplot.org/wpf"
       Title="{Binding SelectedAsset.Name}">
 
-    
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
@@ -15,17 +15,33 @@
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        
-        <StackPanel Margin="20" >
-            <TextBlock FontSize="24" FontWeight="Bold" Text="{Binding SelectedAsset.Name}"/>
-            <TextBlock FontSize="18" Text="Symbol:"/>
-            <TextBlock FontSize="16" Text="{Binding SelectedAsset.Symbol}"/>
-            <TextBlock FontSize="18" Text="Price (USD):"/>
-            <TextBlock FontSize="16" Text="{Binding SelectedAsset.PriceUsd, StringFormat=C}"/>
-            <TextBlock FontSize="18" Text="Change (24h):"/>
-            <TextBlock FontSize="16" Text="{Binding SelectedAsset.VolumeUsd24Hr, StringFormat=C}"/>
-        </StackPanel>
-        <oxy:PlotView Model="{Binding plot}" Grid.Row="0" Grid.RowSpan="2" Grid.Column="1"/>
+        <Border Background="White" Padding="5" DockPanel.Dock="Right" CornerRadius="10" BorderThickness="1" BorderBrush="#A7A7A7">
+            <StackPanel Margin="20" >
+                <TextBlock FontSize="24" FontWeight="Bold" Text="{Binding SelectedAsset.Name}"/>
+                <TextBlock Text="Symbol:  ">
+                    <TextBlock FontSize="16" Text="{Binding SelectedAsset.Symbol}"/>
+                </TextBlock>
+                <TextBlock Text="Price (USD)::  ">
+                    <TextBlock FontSize="16" Text="{Binding SelectedAsset.PriceUsd, StringFormat=C}"/>
+                </TextBlock>
+                <TextBlock Text="Change (24h):  ">
+                    <TextBlock FontSize="16" Text="{Binding SelectedAsset.VolumeUsd24Hr, StringFormat=C}"/>
+                </TextBlock>
+                <ListView ItemsSource="{Binding SelectedAssetMarkets}" Margin="10">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Exchange" DisplayMemberBinding="{Binding ExchangeId}"/>
+                            <GridViewColumn Header="Price" DisplayMemberBinding="{Binding PriceUsd	}"/>
+                            <GridViewColumn Header="Volume (24 h)" DisplayMemberBinding="{Binding VolumeUsd24Hr, StringFormat={}{0:N0}}"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+
+
+
+            </StackPanel>
+        </Border>
+        <oxy:PlotView Model="{Binding Plot}" Grid.Row="0" Grid.RowSpan="2" Grid.Column="1"/>
 
     </Grid>
 </Page>

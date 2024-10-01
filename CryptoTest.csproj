@@ -9,7 +9,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Assets\" />
+    <None Remove="Views\moon_icon.png" />
+    <None Remove="Views\Pages\search_icon.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Convertors\" />
     <Folder Include="Localization\" />
     <Folder Include="Themes\" />
@@ -24,6 +28,12 @@
     <PackageReference Include="OxyPlot.Contrib.Wpf" Version="2.1.2" />
     <PackageReference Include="OxyPlot.Core" Version="2.2.0" />
     <PackageReference Include="OxyPlot.Wpf" Version="2.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\logo.png" />
+    <Resource Include="Views\moon_icon.png" />
+    <Resource Include="Views\Pages\search_icon.png" />
   </ItemGroup>
 
 </Project>

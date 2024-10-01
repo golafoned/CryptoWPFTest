@@ -4,6 +4,7 @@
              xmlns:local="clr-namespace:CryptoTest.Helpers" 
              StartupUri="Views/MainWindow.xaml">
     <Application.Resources>
+        <DropShadowEffect x:Key="DropShadowEffect" Color="Black" Direction="180" ShadowDepth="1" BlurRadius="25" Opacity="0.3"/>
         <!-- Boolean to Brush Converter -->
         <local:BoolToBrushConverter x:Key="BoolToBrushConverter" />
 

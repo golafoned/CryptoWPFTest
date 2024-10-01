@@ -5,6 +5,7 @@ using System.Windows;
 using Microsoft.Extensions.DependencyInjection;
 using CryptoTest.Services.Interfaces;
 using CryptoTest.Helpers;
+using System.Windows.Media;
 
 namespace CryptoTest.Views.Pages
 {
@@ -13,17 +14,17 @@ namespace CryptoTest.Views.Pages
         MainPageViewModel viewModel;
         public MainPage()
         {
-            InitializeComponent();
-
             var cryptoService = ServiceLocator.GetService<ICryptoService>();
             viewModel = new MainPageViewModel(cryptoService);
             this.DataContext = viewModel;
+            InitializeComponent();
         }
         private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             viewModel.FilterCryptocurrencies(SearchTextBox.Text);
-            CryptoListView.ItemsSource = viewModel.FilteredCryptocurrencies; 
+            CryptoListView.ItemsSource = viewModel.FilteredCryptocurrencies;
         }
+
         private void CryptoListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (CryptoListView.SelectedItem is Asset selectedAsset)

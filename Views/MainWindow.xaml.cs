@@ -10,5 +10,10 @@ namespace CryptoTest.Views.Pages
             
             MainFrame.Navigate(new MainPage());
         }
+
+        private void MainFrame_Navigated(object sender, System.Windows.Navigation.NavigationEventArgs e)
+        {
+
+        }
     }
 }

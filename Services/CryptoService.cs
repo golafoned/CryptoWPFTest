@@ -25,7 +25,6 @@ namespace CryptoTest.Services
             var response = await _httpClient.GetAsync($"assets?limit={topN}");
             response.EnsureSuccessStatusCode();
             var result = await response.Content.ReadFromJsonAsync<GetAssetsResponse>();
-            Console.WriteLine(result);
             return result.Data;
         }
         public async Task<Asset> GetCryptocurrencyDetailsAsync(string id)
@@ -50,9 +49,8 @@ namespace CryptoTest.Services
         {
             var response = await _httpClient.GetAsync($"assets/{id}/history?interval={interval}");
             response.EnsureSuccessStatusCode();
-
             var result = await response.Content.ReadFromJsonAsync<GetAssetsHistoryResponse>();
-            return result?.Data;
+            return result.Data;
         }
 
         public async Task<List<Candle>> GetCandlestickDataAsync(string id, string interval)

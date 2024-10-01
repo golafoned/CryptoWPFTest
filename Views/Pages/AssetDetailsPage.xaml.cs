@@ -1,5 +1,7 @@
-﻿using CryptoTest.Models;
-
+﻿using CryptoTest.Helpers;
+using CryptoTest.Models;
+using CryptoTest.Services.Interfaces;
+using CryptoTest.ViewModels;
 using OxyPlot;
 using OxyPlot.Axes;
 using OxyPlot.Legends;
@@ -25,64 +27,13 @@ namespace CryptoTest.Views.Pages
 {
     public partial class AssetDetailsPage : Page
     {
-        public Asset SelectedAsset { get; set; }
-        public PlotModel plot { get; set; }
+        AssetDetailsPageViewModel viewModel;
         public AssetDetailsPage(Asset SelectedAsset)
         {
-            this.SelectedAsset = SelectedAsset;
-            //this.PlotModel.Series.Add(new CandleStickSeries());
-            plot = new PlotModel();
-            lineSeries_Click();
+            viewModel = new AssetDetailsPageViewModel(ServiceLocator.GetService<ICryptoService>(), SelectedAsset);
+            this.DataContext = viewModel;
             InitializeComponent();
-            this.DataContext = this;
         }
-        private void lineSeries_Click()
-        {
-            double[] x = Enumerable.Range(1, 100).Select(v => ((double)v) / 10).ToArray();
-            double[] y = x.Select(v => v * v).ToArray();
-
-            var model = new PlotModel { Title = "OxyPlot - Line Series" };
-            model.Axes.Add(new LinearAxis
-            {
-                Position = AxisPosition.Left,
-                Title = "Y",
-            });
-            model.Axes.Add(new LinearAxis
-            {
-                Position = AxisPosition.Bottom,
-                Title = "Number of items",
-            });
-            model = addLine(model, x, y, 2, OxyColors.Gray);
-            model.Series[model.Series.Count - 1].Title = "X2";
-            model.Legends.Add(new OxyPlot.Legends.Legend()
-            {
-                LegendPosition = LegendPosition.TopLeft,
-                LegendFontSize = 12
-            });
-            plot = model;
-
-        }
-
-
-
-
-
-        #region Methods
-
-        private PlotModel addLine(PlotModel model, double[] x, double[] y, double lineThick, OxyColor colorValue)
-        {
-            var lineSeries = new LineSeries { StrokeThickness = lineThick, Color = colorValue };
-            for (int i = 0; i < x.Length; i++)
-            {
-                lineSeries.Points.Add(new DataPoint(x[i], y[i]));
-            }
-            model.Series.Add(lineSeries);
-            return model;
-        }
-        
-
-        #endregion
-
     }
 }
 
